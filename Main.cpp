@@ -14,16 +14,18 @@ int main(){
         cout<<"[2] Mostrar estadisticas"<<endl;
         cout<<"[3] Borrar estadisticas"<<endl;
         cout<<"[0] Salir"<<endl;
-        cin>>opc;
+        cout<<"opcion: "; cin>>opc;
         limpiar_pantalla();
 
         switch(opc){
-            case JUGAR: juego(); break;
-            case ESTADISTICAS: break;
+            case JUGAR:        juego(); break;
+            case ESTADISTICAS: Estadisticas(); break;
             case BORRAR: break;
+            case SALIR: cout<<"Byteees!!!!!"<<endl; break;
+            default: cout<<"Opcion no valida"<<endl;
         }
 
-    }while(opc !=0);
+    }while(opc != SALIR);
 
     return 0;
 }
