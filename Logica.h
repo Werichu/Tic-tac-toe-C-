@@ -182,11 +182,27 @@ void juego(){
         }else{
             validarJuego = true; // termina el juego
             contador_jugadas = 0;
+            limpiar_pantalla();
         }
     }
 
     }while(validarJuego == false);
+}
 
+void Estadisticas (){// muestra tablero de victorias
+    cout<<"-----------------ESTADISTICAS---------------"<<endl;
+    cout<<"--------------------------------------------"<<endl;
+    cout<<"|                 VICTORIAS                |"<<endl;
+    cout<<"|------------------------------------------|"<<endl;
+    cout<<"|     JUGADOR X      |      JUGADOR O      |"<<endl;
+    cout<<"|------------------------------------------|"<<endl;
+    cout<<"|"<<"         "<<victorias_jugadorX<<"          "<<"|"<<
+    "          "<<victorias_jugadorO<<"          "<<"|"<<endl;
+    cout<<"|------------------------------------------|"<<endl;
+    cout<<"|      EMPATES      "<<" |          "<<empates<<
+    "          |"<<endl;
+    cout<<"--------------------------------------------"<<endl;
+    cout<<"\n\n"<<endl;
 }
 
 
