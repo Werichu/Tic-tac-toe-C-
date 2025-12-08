@@ -14,4 +14,6 @@ void limpiar_pantalla()
   #endif
 }
 
+enum{SALIR,JUGAR,ESTADISTICAS,BORRAR};
+
 #endif // UTILS_H_INCLUDED
