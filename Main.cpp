@@ -5,8 +5,8 @@
 
 using namespace std;
 
-int contador_jugadas; // ayuda a declarar empates
-int victorias_jugadorX; // estas variables cuantas las victorias de cada jugador como los empates
+int contador_jugadas;
+int victorias_jugadorX; \
 int victorias_jugadorO;
 int empates;
 
