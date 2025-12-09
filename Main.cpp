@@ -6,7 +6,7 @@
 using namespace std;
 
 int contador_jugadas;
-int victorias_jugadorX; \
+int victorias_jugadorX;
 int victorias_jugadorO;
 int empates;
 
@@ -17,9 +17,9 @@ int main(){
         cout<<"---------- Tic-Tac-Toe ----------\n"<<endl;
         cout<<"[1] Iniciar juego"<<endl;
         cout<<"[2] Mostrar estadisticas"<<endl;
-        cout<<"[3] Guardar datos"<<endl;
-        cout<<"[4] Cargar datos"<<endl;
-        cout<<"[5] Borrar datos"<<endl;
+        cout<<"[3] Guardar puntuacion"<<endl;
+        cout<<"[4] Cargar puntuacion"<<endl;
+        cout<<"[5] Borrar puntuacion"<<endl;
         cout<<"[0] Salir"<<endl;
         cout<<"opcion: "; cin>>opc;
         limpiar_pantalla();
@@ -29,7 +29,7 @@ int main(){
             case ESTADISTICAS: Estadisticas(); break;
             case GUARDAR: guardarDatos(); break;
             case CARGAR: cargarDatos(); break;
-            case BORRAR: cout<< "proximamente!!!!!!!!" <<endl;break;
+            case BORRAR: BorrarDatos(); break;
             case SALIR: cout<<"Byteees!!!!!"<<endl; break;
             default: cout<<"Opcion no valida"<<endl;
         }

@@ -9,6 +9,11 @@ using std::cout;
 using std::cin;
 using std::endl;
 
+//prototipos
+bool colocarMarcaX(char tablero[DIM][DIM], int fila, int columna);
+bool colocarMarcaO(char tablero[DIM][DIM], int fila, int columna);
+bool defineGanador(char tablero[DIM][DIM]);
+
 extern int contador_jugadas; // ayuda a declarar empates
 extern int victorias_jugadorX; // estas variables cuantas las victorias de cada jugador como los empates
 extern int victorias_jugadorO;
@@ -209,7 +214,6 @@ void Estadisticas (){// muestra tablero de victorias
 }
 
 void guardarDatos(){
-
     std::ofstream miArchivo ("Puntuaciones.txt");
     miArchivo<<"Victorias X: "<<victorias_jugadorX<<"\n"<<"Victorias O: "<<
     victorias_jugadorO<<"\n"<<"Empates: "<<empates;
@@ -228,11 +232,22 @@ void cargarDatos(){
         Archivo>>texto>>texto>>victorias_jugadorO;
         Archivo>>texto>>empates;
         Archivo.close();
-        cout<<"Se an cargado los datos"<<endl;
+        cout<<"Se han cargado los datos"<<endl;
     }else{
     cout<<"Error al cargar los datos"<<endl;
     }
 }
 
+void BorrarDatos(){
+    victorias_jugadorX = 0;
+    victorias_jugadorO = 0;
+    empates = 0;
+
+    std::ofstream miArchivo ("Puntuaciones.txt");
+    miArchivo<<"Victorias X: "<<victorias_jugadorX<<"\n"<<"Victorias O: "<<
+    victorias_jugadorO<<"\n"<<"Empates: "<<empates;
+    miArchivo.close();
+    cout<<"Datos borrados con exito"<<endl;
+}
 
 #endif // LOGICA_H_INCLUDED
