@@ -14,6 +14,6 @@ void limpiar_pantalla()
   #endif
 }
 
-enum{SALIR,JUGAR,ESTADISTICAS,BORRAR}; // enums para el menu principal
+enum{SALIR,JUGAR,ESTADISTICAS,GUARDAR,CARGAR,BORRAR}; // enums para el menu principal
 
 #endif // UTILS_H_INCLUDED
