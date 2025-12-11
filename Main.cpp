@@ -5,11 +5,6 @@
 
 using namespace std;
 
-int contador_jugadas;
-int victorias_jugadorX;
-int victorias_jugadorO;
-int empates;
-
 int main(){
     int opc;
 
@@ -26,10 +21,10 @@ int main(){
 
         switch(opc){
             case JUGAR:        juego(); break;
-            case ESTADISTICAS: Estadisticas(); break;
-            case GUARDAR: guardarDatos(); break;
-            case CARGAR: cargarDatos(); break;
-            case BORRAR: BorrarDatos(); break;
+            case ESTADISTICAS: estadisticas(); break;
+            case GUARDAR:      guardarDatos(); break;
+            case CARGAR:       cargarDatos(); break;
+            case BORRAR:       borrarDatos(); break;
             case SALIR: cout<<"Byteees!!!!!"<<endl; break;
             default: cout<<"Opcion no valida"<<endl;
         }
