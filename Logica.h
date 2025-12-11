@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include "utils.h"
+#include "Estructura.h"
 #define DIM 3 // es la dimension del tablero
 
 using std::cout;
@@ -14,13 +15,15 @@ bool colocarMarcaX(char tablero[DIM][DIM], int fila, int columna);
 bool colocarMarcaO(char tablero[DIM][DIM], int fila, int columna);
 bool defineGanador(char tablero[DIM][DIM]);
 
-extern int contador_jugadas; // ayuda a declarar empates
-extern int victorias_jugadorX; // estas variables cuantas las victorias de cada jugador como los empates
-extern int victorias_jugadorO;
-extern int empates;
+// estructura
+    Puntos p;
 
-void inicializarMatriz(char tablero[DIM][DIM]){
-    memset(tablero,'-',9); // esta funcion llena la matriz tablero con caracteres nulos
+void inicializarMatriz(char tablero[DIM][DIM]){ // se inicializa el tablero con un caracter nulo
+    for(int i=0; i<DIM; i++){
+        for(int j=0; j<DIM; j++){
+            tablero[i][j] = '-';
+        }
+    }
 }
 
 void mostrarMatriz(char tablero[DIM][DIM]){ // generacion del tablero
@@ -92,13 +95,13 @@ void juego(){
             hayGanador = false;
             jugadorX = true;
             jugadorO = true;
-            contador_jugadas = 0; // se reinicia el contador de movimientos
+            p.contador_jugadas = 0; // se reinicia el contador de movimientos
             limpiar_pantalla();
             cin.get();
             continue; // se repite el ciclo do while
         }else{
             validarJuego = true; // termina el juego
-            contador_jugadas = 0;
+            p.contador_jugadas = 0;
             limpiar_pantalla();
         }
     }
@@ -120,7 +123,7 @@ bool colocarMarcaX(char tablero[DIM][DIM], int fila, int columna){
     }
 
     tablero[fila][columna] = marcaX;
-    contador_jugadas++;
+    p.contador_jugadas++;
     // en caso de que pase las validaciones, el juego prosigue
     return true;
 }
@@ -139,7 +142,7 @@ bool colocarMarcaO(char tablero[DIM][DIM], int fila, int columna){
     }
 
     tablero[fila][columna] = marcaO;
-    contador_jugadas++;
+    p.contador_jugadas++;
     // en caso de que pase las validaciones, el juego prosigue
     return true;
 }
@@ -162,7 +165,7 @@ bool defineGanador(char tablero[DIM][DIM]){
         (tablero[0][2] == marcaX && tablero[1][1] == marcaX && tablero[2][0] == marcaX)
     ){
         cout<<"Has ganado Jugador X  !!!"<<endl;
-        victorias_jugadorX++;
+        p.victorias_jugadorX++;
         cout<<endl;
         return true;
     }
@@ -181,15 +184,15 @@ bool defineGanador(char tablero[DIM][DIM]){
         (tablero[0][2] == marcaO && tablero[1][1] == marcaO && tablero[2][0] == marcaO)
     ){
         cout<<"Has ganado Jugador O  !!!"<<endl;
-        victorias_jugadorO++;
+        p.victorias_jugadorO++;
         cout<<"\n";
         return true;
     }
 
     //empates
-    if(contador_jugadas == 9){
+    if(p.contador_jugadas == 9){
         cout<<"Es un empate!!!!"<<endl;
-        empates++;
+        p.empates++;
         cout<<endl;
         return true;
     }
@@ -197,17 +200,17 @@ bool defineGanador(char tablero[DIM][DIM]){
     return false;
 }
 
-void Estadisticas (){// muestra tablero de victorias
+void estadisticas (){// muestra tablero de victorias
     cout<<"-----------------ESTADISTICAS---------------"<<endl;
     cout<<"--------------------------------------------"<<endl;
     cout<<"|                 VICTORIAS                |"<<endl;
     cout<<"|------------------------------------------|"<<endl;
     cout<<"|     JUGADOR X      |      JUGADOR O      |"<<endl;
     cout<<"|------------------------------------------|"<<endl;
-    cout<<"|"<<"         "<<victorias_jugadorX<<"          "<<"|"<<
-    "          "<<victorias_jugadorO<<"          "<<"|"<<endl;
+    cout<<"|"<<"         "<<p.victorias_jugadorX<<"          "<<"|"<<
+    "          "<<p.victorias_jugadorO<<"          "<<"|"<<endl;
     cout<<"|------------------------------------------|"<<endl;
-    cout<<"|      EMPATES      "<<" |          "<<empates<<
+    cout<<"|      EMPATES      "<<" |          "<<p.empates<<
     "          |"<<endl;
     cout<<"--------------------------------------------"<<endl;
     cout<<"\n\n"<<endl;
@@ -215,8 +218,8 @@ void Estadisticas (){// muestra tablero de victorias
 
 void guardarDatos(){
     std::ofstream miArchivo ("Puntuaciones.txt");
-    miArchivo<<"Victorias X: "<<victorias_jugadorX<<"\n"<<"Victorias O: "<<
-    victorias_jugadorO<<"\n"<<"Empates: "<<empates;
+    miArchivo<<"Victorias X: "<<p.victorias_jugadorX<<"\n"<<"Victorias O: "<<
+    p.victorias_jugadorO<<"\n"<<"Empates: "<<p.empates;
     miArchivo.close();
 
     cout<<"-> Archivo generado como: Puntuaciones.txt"<<endl;
@@ -228,9 +231,9 @@ void cargarDatos(){
     std::string texto;
     std::ifstream Archivo ("Puntuaciones.txt");
     if(Archivo.is_open()){
-        Archivo>>texto>>texto>>victorias_jugadorX;
-        Archivo>>texto>>texto>>victorias_jugadorO;
-        Archivo>>texto>>empates;
+        Archivo>>texto>>texto>>p.victorias_jugadorX;
+        Archivo>>texto>>texto>>p.victorias_jugadorO;
+        Archivo>>texto>>p.empates;
         Archivo.close();
         cout<<"Se han cargado los datos"<<endl;
     }else{
@@ -238,14 +241,14 @@ void cargarDatos(){
     }
 }
 
-void BorrarDatos(){
-    victorias_jugadorX = 0;
-    victorias_jugadorO = 0;
-    empates = 0;
+void borrarDatos(){
+    p.victorias_jugadorX = 0;
+    p.victorias_jugadorO = 0;
+    p.empates = 0;
 
     std::ofstream miArchivo ("Puntuaciones.txt");
-    miArchivo<<"Victorias X: "<<victorias_jugadorX<<"\n"<<"Victorias O: "<<
-    victorias_jugadorO<<"\n"<<"Empates: "<<empates;
+    miArchivo<<"Victorias X: "<<p.victorias_jugadorX<<"\n"<<"Victorias O: "<<
+    p.victorias_jugadorO<<"\n"<<"Empates: "<<p.empates;
     miArchivo.close();
     cout<<"Datos borrados con exito"<<endl;
 }
