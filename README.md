@@ -2,7 +2,7 @@
 This's a my first project, i hope update it to acceptable state, however, if you plan to modify it or use it for another purpose, you are completely free to do so :)
 
 
-#### Structure Proyect #####
+## Structure Proyect ##
 
 Tic-Tac-Toe/
  ├─ src/
